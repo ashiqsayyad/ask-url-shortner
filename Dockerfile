@@ -23,7 +23,7 @@ WORKDIR /app
 # Copy the jar file from the build stage
 COPY --from=build /app/target/ask-url-shortner-1.0.0.jar /app/ask-url-shortner-1.0.0.jar
 
-# Expose the application port
+# Expose the application port this is just indication that appliction is running at 8083 port
 EXPOSE 8083
 
 # Command to run the application

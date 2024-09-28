@@ -11,7 +11,13 @@ docker push ashiqsayyad/ask-url-shortner:1.0.0
 
 # Run
 
+To run normal image :
+
 docker run -d -p 8085:8083 ashiqsayyad/ask-url-shortner:1.0.0
+
+To run image with external postgres db
+
+docker run -d -p 8085:8083 -e  SPRING_DATASOURCE_URL=jdbc:postgresql://host.docker.internal:5432/askurlshortner -e SPRING_DATASOURCE_USERNAME=postgres -e SPRING_DATASOURCE_PASSWORD=postgres ashiqsayyad/ask-url-shortner:1.0.0-externaldb
 
 # Test
 
