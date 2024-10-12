@@ -46,9 +46,17 @@ But for final image , we need only compiled "ask-url-shortner-1.0.0.jar" and jav
 
 # Helm & K8s installation
 
-kubectl port-forward svc/url-shortner-ask-url-shortner 8080:8080 -n ask-url-shortner
-
 helm install url-shortner .    //run from helm directory
+
+kubectl port-forward svc/url-shortner-ask-url-shortner <local-machine-port where you want port to be forwarded>:<service-port where svc is running> -n ask-url-shortner
+
+kubectl port-forward svc/url-shortner-ask-url-shortner 8089:8080 -n ask-url-shortner  
+
+8080 is the port where my kubernetes svc is running and 8089 is the port where local port forwarding will happen http://localhost:8089/hello
+
+
+
+
 
 
 
