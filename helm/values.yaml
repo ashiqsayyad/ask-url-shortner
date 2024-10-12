@@ -1,0 +1,32 @@
+replicaCount: 1
+
+image:
+  repository: ashiqsayyad/ask-url-shortner
+  tag: 1.0.0-externaldb
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8080
+
+app:
+  containerPort: 8083
+
+database:
+  url: jdbc:postgresql://host.docker.internal:5432/askurlshortner 
+  username: postgres
+  password: postgres
+
+resources:
+  requests:
+    memory: "256Mi"
+    cpu: "500m"
+  limits:
+    memory: "512Mi"
+    cpu: "1000m"
+
+namespace: ask-url-shortner
+
+nodeSelector: {}
+tolerations: []
+affinity: {}

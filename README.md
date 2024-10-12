@@ -2,6 +2,9 @@
 
 docker build -t ashiqsayyad/ask-url-shortner:1.0.0 .
 
+# for external postgres db image
+docker build -t ashiqsayyad/ask-url-shortner:1.0.0-externaldb .
+
 # Push to remote docker hub repository ashiqsayyad/ask-url-shortner (optional)
 
 docker login
@@ -40,6 +43,13 @@ The docker file mentioned in this project explains docker multistage builds.
 For compilation/build stage , we have used base image as "maven:3.8.5-openjdk-17-slim"  as we need both maven and java for compiling and generating the final application jar.
 
 But for final image , we need only compiled "ask-url-shortner-1.0.0.jar" and java for runtime . Hence we used only "openjdk:17-jdk-slim" as base image . Hence final image will become light-weight as it has only jar and java base image. All other maven compile time generated artifacts are excluded in final image
+
+# Helm & K8s installation
+
+kubectl port-forward svc/url-shortner-ask-url-shortner 8080:8080 -n ask-url-shortner
+
+helm install url-shortner .    //run from helm directory
+
 
 
 

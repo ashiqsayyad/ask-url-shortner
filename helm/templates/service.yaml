@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "ask-url-shortner-app.fullname" . }}
+  namespace: {{ .Values.namespace }} # Dynamically set namespace
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.app.containerPort }}
+      protocol: TCP
+  selector:
+    app: {{ include "ask-url-shortner-app.name" . }}

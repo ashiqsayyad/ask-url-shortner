@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "ask-url-shortner-app.fullname" . }}
+  namespace: {{ .Values.namespace }} # Dynamically set namespace
+  labels:
+    app: {{ include "ask-url-shortner-app.name" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "ask-url-shortner-app.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "ask-url-shortner-app.name" . }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          ports:
+            - containerPort: {{ .Values.app.containerPort }}
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: {{ .Values.database.url }}
+            - name: SPRING_DATASOURCE_USERNAME
+              value: {{ .Values.database.username }}
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: {{ .Values.database.password }}
+          resources:
+            requests:
+              memory: "{{ .Values.resources.requests.memory }}"
+              cpu: "{{ .Values.resources.requests.cpu }}"
+            limits:
+              memory: "{{ .Values.resources.limits.memory }}"
+              cpu: "{{ .Values.resources.limits.cpu }}"

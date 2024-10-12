@@ -1,0 +1,7 @@
+apiVersion: v2
+name: ask-url-shortner
+description: A Helm chart for a URL SHORTNER Spring Boot application
+version: 1.0.0
+appVersion: "1.0.0"
+
+

@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+   name: {{ include "ask-url-shortner-app.fullname" . }}-config
+   namespace: {{ .Values.namespace }} # Dynamically set namespace
+data:
+  SPRING_DATASOURCE_URL: {{ .Values.database.url }}
+  SPRING_DATASOURCE_USERNAME: {{ .Values.database.username }}
+  SPRING_DATASOURCE_PASSWORD: {{ .Values.database.password }}
