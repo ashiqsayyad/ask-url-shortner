@@ -55,7 +55,7 @@ kubectl port-forward svc/url-shortner-ask-url-shortner 8089:8080 -n ask-url-shor
 8080 is the port where my kubernetes svc is running and 8089 is the port where local port forwarding will happen http://localhost:8089/hello
 
 
-# LHD & LLD
+# SYSTEM DESIGN : HLD & LLD
 
 Below Functional requirements . Design a system considering 10 years span. 
 1) Write requests 20 millions per day
@@ -67,8 +67,21 @@ Assumptions :
 
 **Capacity planning**
 
-1) Total requests per day = 200 millions read requests + 20 millions write requests = 220 millions ~= 200 millions requests per day
-2) Data involved per day for 200 millions requests = 
+1) Requests per day = 200 millions read requests + 20 millions write requests = 220 millions ~= 200 millions requests per day
+2) Data involved per day for 200 millions requests = 200,000,000 req/day × 100 bytes = 20,000,000,000 bytes/day ≈ 20 GB/day
+3) Data storage for  ~10 years (~3650 days): 20 GB/day × 3650 ≈ 73,000 GB ≈ 73 TB.
+4) Requests per second (RPS)= 200/24*60*60 = 2314 = 2.3 K
+5) Average bits per second (BPS) :
+       100 bytes/request → 100 × 8 = 800 bits/request
+       BPS = 2300 requests per second * 800 bits/request = 1840000 bits ~= 1.75 MBPS
+6) PEAK RPS : 3 * 2.3 ~= 7K  ( assuming peak load will be 3 times of average normal load)
+7) PEAK BPS : 7000 requests per second * 800 bits/request ~= 5MBPS
+
+**COST ESTIMATION**
+
+1) EKS Deployment
+
+2) Api Gateway with LAMBDA
 
 
 
