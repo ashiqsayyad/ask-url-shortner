@@ -67,9 +67,10 @@ Assumptions :
 
 **Capacity planning**
 
-1) Requests per day = 200 millions read requests + 20 millions write requests = 220 millions ~= 200 millions requests per day
-2) Data involved per day for 200 millions requests = 200,000,000 req/day × 100 bytes = 20,000,000,000 bytes/day ≈ 20 GB/day
-3) Data storage for  ~10 years (~3650 days): 20 GB/day × 3650 ≈ 73,000 GB ≈ 73 TB.
+
+1) Data involved per day for 20 millions write requests = 20,000,000 req/day × 100 bytes = 2,000,000,000 bytes/day ≈ 2 GB/day
+2) Data storage for  ~10 years (~3650 days): 2 GB/day × 3650 ≈ 7300 GB ≈ 7 TB.
+3) Requests per day = 200 millions read requests + 20 millions write requests = 220 millions ~= 200 millions requests per day
 4) Requests per second (RPS)= 200/24*60*60 = 2314 = 2.3 K
 5) Average bits per second (BPS) :
        100 bytes/request → 100 × 8 = 800 bits/request
