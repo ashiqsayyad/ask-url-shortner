@@ -55,6 +55,27 @@ kubectl port-forward svc/url-shortner-ask-url-shortner 8089:8080 -n ask-url-shor
 8080 is the port where my kubernetes svc is running and 8089 is the port where local port forwarding will happen http://localhost:8089/hello
 
 
+# LHD & LLD
+
+Below Functional requirements . Design a system considering 10 years span. 
+1) Write requests 20 millions per day
+2) Read requests  200 millions per day ( assuming 10 read per day for 1 write request)
+
+Assumptions : 
+1) One request payload ~= 100 bytes ( 100 characters)
+2) short url characters : 6
+
+**Capacity planning**
+
+1) Total requests per day = 200 millions read requests + 20 millions write requests = 220 millions ~= 200 millions requests per day
+2) Data involved per day for 200 millions requests = 
+
+
+
+
+
+
+
 
 
 
